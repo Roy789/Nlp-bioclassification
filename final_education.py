@@ -117,17 +117,15 @@ def education_both(sentence):
             list_edu = educational_finder(sentence)
             list_edu.reverse()
             return list_edu
+        
+        
 
 final_bio = final_bio    
 ###looping through the whole list
 final_list = []
-count = 1
 for bios in final_bio:
     education_list = []
     important = important_sent(bios)
-    print('count: ',count)
-    count += 1
-    print(important)
     try:
         if important['Bachelors'] != [] and education_both(important['Bachelors']) != None:
             education_list +=education_both(important['Bachelors'])
@@ -143,16 +141,33 @@ for bios in final_bio:
     try:
         if important['Both'] != []:
             single_college = education_both(important['Both'])
-            if len(single_college) == 1:
-                single_college.append(single_college[0])
-                education_list += single_college
-            else:
-                education_list +=single_college
+            try:
+                if len(single_college) == 1:
+                    single_college.append(single_college[0])
+                    education_list += single_college
+                else:
+                    education_list +=single_college
+            except TypeError:
+                pass
     except KeyError:
         pass
-    print(education_list)
     final_list.append(education_list)
 
+# Correction for harvard Business school 
+    
+for row in final_list:
+    try:
+        if row[0]:
+            x = str(row[0])
+            y = x.upper()
+        if 'BUSINESS' in y and 'HARVARD' in y:
+            try:
+                row[0],row[1] = row[1],row[0]
+            except IndexError:
+                pass
+    except IndexError:
+        pass
+    
 
     
 
