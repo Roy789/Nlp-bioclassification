@@ -8,3 +8,4 @@ The output should be : Bachelors Uni: Northwestern University, Bachelors field: 
 
 The code uses nltk and Spacey to go through each of the sentences and break it down. The comments in the code are sufficient to understand the code. 
 
+The Bio with extracted data is there at this link: https://drive.google.com/file/d/1zC8xm5YtPB-Mj8BRlzUU_u7xEFzGcp1F/view?usp=sharing
